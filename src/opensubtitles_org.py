@@ -107,7 +107,8 @@ def download(item, config=None):
                     
                 # Clean name and save directly
                 filename = clean_filename(file_name)
-                out_path = os.path.join(".", filename)
+                output_dir = config.get("output_dir", ".") if config else "."
+                out_path = os.path.join(output_dir, filename)
                 with open(out_path, "wb") as f_out:
                     f_out.write(srt_content)
                 print(f"Saved subtitle to '{out_path}' successfully!")

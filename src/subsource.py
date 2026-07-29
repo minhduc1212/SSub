@@ -123,7 +123,8 @@ def download(item, config=None):
         dl_headers = HEADERS.copy()
         dl_headers["Referer"] = f"https://subsource.net/subtitle/{sub_link}"
         
-        return download_file(dl_url, headers=dl_headers)
+        output_dir = config.get("output_dir", ".") if config else "."
+        return download_file(dl_url, headers=dl_headers, output_dir=output_dir)
     except Exception as e:
         print(f"SubSource download error: {e}")
         return False

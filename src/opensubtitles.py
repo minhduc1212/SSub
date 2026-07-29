@@ -97,7 +97,8 @@ def download(item, config):
             dl_link = dl_info.get("link")
             if dl_link:
                 # Use the generic downloader to download and extract
-                return download_file(dl_link, headers={"User-Agent": USER_AGENT})
+                output_dir = config.get("output_dir", ".") if config else "."
+                return download_file(dl_link, headers={"User-Agent": USER_AGENT}, output_dir=output_dir)
             else:
                 print("OpenSubtitles API response did not contain a download link.")
         else:

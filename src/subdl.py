@@ -63,7 +63,8 @@ def download(item, config=None):
         
     try:
         # Download and extract the subtitle using our common downloader
-        return download_file(dl_link)
+        output_dir = config.get("output_dir", ".") if config else "."
+        return download_file(dl_link, output_dir=output_dir)
     except Exception as e:
         print(f"SubDL download error: {e}")
         return False

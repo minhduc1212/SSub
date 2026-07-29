@@ -223,7 +223,8 @@ def download(item, config=None):
             
         dl_url = f"{BASE_URL}{download_btn}"
         # Download and extract the subtitle ZIP file
-        return download_file(dl_url, headers={"User-Agent": user_agent, "Referer": sub_url})
+        output_dir = config.get("output_dir", ".") if config else "."
+        return download_file(dl_url, headers={"User-Agent": user_agent, "Referer": sub_url}, output_dir=output_dir)
     except Exception as e:
         print(f"[SubScene] Download error: {e}")
         return False

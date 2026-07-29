@@ -106,9 +106,10 @@ def search(query, languages="vi,en"):
 
 def download(item, config=None):
     dl_url = item["link"]
+    output_dir = config.get("output_dir", ".") if config else "."
     try:
         # Use our standard downloader
-        return download_file(dl_url, headers=HEADERS)
+        return download_file(dl_url, headers=HEADERS, output_dir=output_dir)
     except Exception as e:
         print(f"Addic7ed download error: {e}")
         return False
