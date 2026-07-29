@@ -15,7 +15,7 @@ if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
 
 from src.config import load_config, save_config
-from src import opensubtitles, subsource, subdl, subscene, addic7ed, opensubtitles_org
+from src import opensubtitles, subsource, subdl, addic7ed, opensubtitles_org
 
 app = FastAPI(title="SSub API", description="Multi-site subtitle downloader API")
 
@@ -49,7 +49,6 @@ async def search(query: str, languages: str = "vi,en"):
         async_search_provider("OpenSubtitles.com", opensubtitles.search, query, languages),
         async_search_provider("SubSource", subsource.search, query, languages),
         async_search_provider("SubDL", subdl.search, query, languages, config.get("subdl_api_key")),
-        async_search_provider("SubScene", subscene.search, query, languages),
         async_search_provider("Addic7ed", addic7ed.search, query, languages),
         async_search_provider("OpenSubtitles.org", opensubtitles_org.search, query, languages),
     ]
@@ -91,7 +90,6 @@ async def download(item: dict, background_tasks: BackgroundTasks):
         "OpenSubtitles": opensubtitles.download,
         "SubSource": subsource.download,
         "SubDL": subdl.download,
-        "SubScene": subscene.download,
         "Addic7ed": addic7ed.download,
         "OpenSubtitlesOrg": opensubtitles_org.download
     }

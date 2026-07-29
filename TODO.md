@@ -1,9 +1,9 @@
 # Web
     - [x] https://subdl.com/ (Implemented)
-    - [ ] https://www.addic7ed.com/
+    - [x] https://www.addic7ed.com/ (Implemented)
     - [x] https://subsource.net/ (Implemented)
-    - [x] https://sub-scene.com/ (Implemented)
+    - [ ] https://sub-scene.com/ (Removed)
     - [x] https://www.opensubtitles.com/ (Implemented)
-    - [ ] https://www.opensubtitles.org/
+    - [x] https://www.opensubtitles.org/ (Implemented)
 
     

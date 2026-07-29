@@ -2,7 +2,7 @@ import os
 import sys
 import concurrent.futures
 from src.config import load_config
-from src import opensubtitles, subsource, subdl, subscene, addic7ed, opensubtitles_org
+from src import opensubtitles, subsource, subdl, addic7ed, opensubtitles_org
 
 def search_provider(provider_name, search_fn, query, languages, *args):
     try:
@@ -32,7 +32,7 @@ def main():
     results = []
     
     # We will use ThreadPoolExecutor to search all sites concurrently for speed
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
         futures = {
             executor.submit(
                 search_provider, "OpenSubtitles.com", opensubtitles.search, query, languages
@@ -43,9 +43,6 @@ def main():
             executor.submit(
                 search_provider, "SubDL", subdl.search, query, languages, config.get("subdl_api_key")
             ): "SubDL",
-            executor.submit(
-                search_provider, "SubScene", subscene.search, query, languages
-            ): "SubScene",
             executor.submit(
                 search_provider, "Addic7ed", addic7ed.search, query, languages
             ): "Addic7ed",
@@ -115,8 +112,6 @@ def main():
         success = subsource.download(selected_item, config)
     elif provider == "SubDL":
         success = subdl.download(selected_item, config)
-    elif provider == "SubScene":
-        success = subscene.download(selected_item, config)
     elif provider == "Addic7ed":
         success = addic7ed.download(selected_item, config)
     elif provider == "OpenSubtitlesOrg":
